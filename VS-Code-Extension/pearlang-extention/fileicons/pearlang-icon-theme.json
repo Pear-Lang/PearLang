@@ -1,0 +1,16 @@
+{
+    "iconDefinitions": {
+      "pearIcon": {
+        "iconPath": "./icons/pear-file-icon.png"
+      }
+    },
+    "fileExtensions": {
+      "p": "pearIcon",
+      "pear": "pearIcon"
+    },
+    "fileNames": {
+      "*.p": "pearIcon",
+      "*.pear": "pearIcon"
+    }
+  }
+  

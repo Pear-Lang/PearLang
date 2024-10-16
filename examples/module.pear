@@ -1,0 +1,37 @@
+# module.pear
+
+# Exported Functions
+
+export function multiply(a, b) {
+    return a * b;
+}
+
+export function fetchData(url) {
+    print("Fetching data from: " + url);
+    let data = "Sample data fetched from " + url;
+    print("Data fetched successfully.");
+    return data;
+}
+
+# Exported Class
+
+export class Calculator {
+    function add(a, b) {
+        return a + b;
+    }
+
+    function subtract(a, b) {
+        return a - b;
+    }
+
+    function multiply(a, b) {
+        return a * b;
+    }
+
+    function divide(a, b) {
+        if (b == 0) {
+            throw "Division by zero!";
+        }
+        return a / b;
+    }
+}

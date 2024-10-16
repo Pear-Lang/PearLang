@@ -1,0 +1,96 @@
+# writeFilepeartest.pear
+
+# Description:
+# This Pear program demonstrates various file operations including creating directories,
+# writing to files, reading files, appending data, editing (overwriting) files, moving files,
+# and deleting files. All operations utilize specific absolute paths based on the defined base directory.
+
+# 1. Define the Base Directory
+# Replace 'C:/path/to/file' with your desired base directory path.
+
+let str baseDir = "C:/path/to/file";
+
+# 2. Functions
+
+# Function to greet a user
+function greet(name) {
+    print("Hello, " + name + "!");
+}
+
+# 3. Creating Directories
+# Create 'output' and 'backup' directories within the base directory
+
+createDirectory(baseDir + "/output");
+createDirectory(baseDir + "/backup");
+
+print("Directories 'output' and 'backup' have been created at " + baseDir + ".");
+
+# 4. Writing to a File
+# Write initial content to 'output/test.txt'
+
+writeFile(baseDir + "/output/test.txt", "This is the initial content of the test file.\n");
+print("File 'test.txt' has been created and written to at " + baseDir + "/output/.");
+
+# 5. Reading from a File
+# Read and print the content of 'output/test.txt'
+
+let str initialContent = readFile(baseDir + "/output/test.txt");
+print("Content of 'test.txt':\n" + initialContent);
+
+# 6. Appending to a File
+# Append additional data to 'output/test.txt'
+
+appendFile(baseDir + "/output/test.txt", "This line has been appended.\n");
+print("Appended a new line to 'test.txt' at " + baseDir + "/output/.");
+
+# Read and print the updated content
+let str appendedContent = readFile(baseDir + "/output/test.txt");
+print("Updated Content of 'test.txt':\n" + appendedContent);
+
+# 7. Editing (Overwriting) a File
+# Overwrite the existing content of 'output/test.txt' with new data
+
+editFile(baseDir + "/output/test.txt", "This is the overwritten content of the test file.\n");
+print("File 'test.txt' has been overwritten with new content at " + baseDir + "/output/.");
+
+# Read and print the overwritten content
+let str editedContent = readFile(baseDir + "/output/test.txt");
+print("Edited Content of 'test.txt':\n" + editedContent);
+
+# 8. Moving a File to Another Path
+# Move 'output/test.txt' to the 'backup' directory as 'backup/test_backup.txt'
+
+moveFile(baseDir + "/output/test.txt", baseDir + "/backup/test_backup.txt");
+print("File 'test.txt' has been moved to 'backup/test_backup.txt'.");
+
+# Verify the move by reading the content from the new location
+let str movedContent = readFile(baseDir + "/backup/test_backup.txt");
+print("Content of 'backup/test_backup.txt':\n" + movedContent);
+
+# 9. Deleting a File
+# Delete the moved file 'backup/test_backup.txt'
+
+# 10. Using the Greet Function
+greet("Pear User");
+
+# 11. Additional Operations
+
+# Create 'anotherInput.txt' for demonstration purposes
+writeFile(baseDir + "/output/anotherInput.txt", "Content of another input file.\n");
+print("File 'anotherInput.txt' has been created and written to at " + baseDir + "/output/.");
+
+# Read from 'anotherInput.txt'
+let str anotherData = readFile(baseDir + "/output/anotherInput.txt");
+print("Content of 'anotherInput.txt':\n" + anotherData);
+
+# Write to 'anotherOutput.txt'
+writeFile(baseDir + "/output/anotherOutput.txt", "Initial content for another output file.\n");
+print("File 'anotherOutput.txt' has been created and written to at " + baseDir + "/output/.");
+
+# Append to 'anotherOutput.txt'
+appendFile(baseDir + "/output/anotherOutput.txt", "Appending additional data to another output file.\n");
+print("Appended data to 'anotherOutput.txt' at " + baseDir + "/output/.");
+
+# Read and print the updated content of 'anotherOutput.txt'
+let str anotherAppendedContent = readFile(baseDir + "/output/anotherOutput.txt");
+print("Updated Content of 'anotherOutput.txt':\n" + anotherAppendedContent);
