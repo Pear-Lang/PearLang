@@ -376,7 +376,8 @@ do {
 **Example:**
 ```pear
 # For Loop
-for (define num i = 1; i <= 3; i = i + 1) {
+define num i;
+for (i = 1; i <= 3; i = i + 1) {
     print("Iteration: " + i);
 }
 
@@ -686,15 +687,17 @@ define str secondName = names[1];   # "Bob"
 
 **Iterating Through Arrays:**
 ```pear
-for (define num i = 0; i < numbers.length; i = i + 1) {
+define num i;
+for (i = 0; i < numbers.length; i = i + 1) {
     print("Number: " + numbers[i]);
 }
 ```
 
 **Example:**
 ```pear
-define num[] scores = [85, 90, 78, 92, 88];
-for (define num i = 0; i < scores.length; i = i + 1) {
+define num scores = [85, 90, 78, 92, 88];
+define num i;
+for (i = 0; i < scores.length; i = i + 1) {
     print("Score " + (i + 1) + ": " + scores[i]);
 }
 ```
