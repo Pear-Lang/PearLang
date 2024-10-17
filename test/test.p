@@ -26,8 +26,10 @@ if (product > MAX_VALUE) {
 
 # Loop
 define num count = 0;
+define num num,
+for (num = 1; num < 10; num++)
 do {
-    print count;
+    print count; 
     count = count + 1;
 } while (count < 5);
 

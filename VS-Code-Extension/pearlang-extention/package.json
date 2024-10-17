@@ -3,9 +3,9 @@
   "displayName": "PearLang Colorful Syntax",
   "description": "Syntax highlighting for Pear programming language.",
   "publisher": "Julian Stoffels",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "engines": {
-    "vscode": "^1.94.0"
+    "vscode": "^1.0.0"
   },
   "categories": [
     "Programming Languages"
