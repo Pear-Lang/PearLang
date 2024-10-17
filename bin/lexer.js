@@ -13,7 +13,7 @@ const TokenType = {
 
 // Keywords in the updated language
 const Keywords = [
-    'define', 'const', 'num', 'str', 'bool', 'obj',
+    'let', 'define', 'const', 'num', 'str', 'bool', 'obj',
     'function', 'return', 'if', 'else',
     'do', 'while', 'for', 'print', 'true', 'false',
     'try', 'catch', 'finally', 'throw', 'class',

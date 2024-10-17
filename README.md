@@ -349,7 +349,8 @@ Repeat code blocks multiple times based on conditions.
 
 **For Loop:**
 ```pear
-for (define num i = 0; i < 5; i = i + 1) {
+define num i;
+for (i = 0; i < 5; i = i + 1) {
     print("For Loop Iteration: " + i);
 }
 ```

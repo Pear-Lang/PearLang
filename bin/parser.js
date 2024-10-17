@@ -559,7 +559,7 @@ class Parser {
         
         let init = null;
         if (!(this.currentToken.type === TokenType.Punctuation && this.currentToken.value === ';')) {
-            if (this.currentToken.type === TokenType.Keyword && ['let', 'const'].includes(this.currentToken.value)) {
+            if (this.currentToken.type === TokenType.Keyword && ['define', 'const'].includes(this.currentToken.value)) {
                 init = this.variableDeclaration(false); // Do not eat ';'
             } else {
                 init = this.expression();

@@ -9,10 +9,10 @@ function greet(name) {
 }
 
 # Variables and Data Types
-let num x = 10;
-let str greeting = "Hello, World!";
-let bool isActive = true;
-let obj person = {
+define num x = 10;
+define str greeting = "Hello, World!";
+define bool isActive = true;
+define obj person = {
     name: "John Doe",
     age: 30,
     isEmployed: true,
@@ -23,8 +23,8 @@ print("Person's Age: " + person.age);
 print("Is Person Employed? " + person.isEmployed);
 
 # Arrays and Objects
-let num numbers = [1, 2, 3, 4, 5];
-let str names = ["Alice", "Bob", "Charlie"];
+define num numbers = [1, 2, 3, 4, 5];
+define str names = ["Alice", "Bob", "Charlie"];
 
 print("Numbers Array: " + numbers);
 print("Names Array: " + names);
@@ -34,7 +34,7 @@ greet("Pear User");
 
 # Synchronous Function
 function getData() {
-    let data = fetchData("https://jsonplaceholder.typicode.com/posts/1");
+    define data = fetchData("https://jsonplaceholder.typicode.com/posts/1");
     print("Fetched Data: " + data);
 }
 
@@ -48,11 +48,12 @@ if (x > 5) {
 }
 
 # Loops
-for (let num i = 0; i < 5; i = i + 1) {
+define num i;
+for (i = 0; i < 5; i = i + 1) {
     print("For Loop Iteration: " + i);
 }
 
-let num counter = 0;
+define num counter = 0;
 while (counter < 3) {
     print("While Loop Counter: " + counter);
     counter = counter + 1;
@@ -73,16 +74,16 @@ try {
 }
 
 # Unary Expressions
-let num positive = +x;
-let num negative = -x;
-let bool notActive = !isActive;
+define num positive = +x;
+define num negative = -x;
+define bool notActive = !isActive;
 
 print("Positive x: " + positive);
 print("Negative x: " + negative);
 print("Is Active Negated? " + notActive);
 
 # File IO Operations
-let str fileData = readFile("C:/path/to/file");
+define str fileData = readFile("C:/path/to/file");
 print("File Content: " + fileData);
 writeFile("output.txt", fileData + "\nAppended by Pear!");
 
@@ -95,18 +96,18 @@ appendFile("output.txt", "\nAppended Line: More data added.");
 # Moving Files
 moveFile("output.txt", "backup/output_backup.txt");
 
-# Deleting Files
-deleteFile("backup/output_backup.txt");
-print("File 'backup/output_backup.txt' has been deleted.");
+# Dedefineing Files
+dedefineeFile("backup/output_backup.txt");
+print("File 'backup/output_backup.txt' has been dedefineed.");
 
 # Fetch Data using Imported Function
 function fetchFromAPI() {
-    let apiData = fetchData("https://jsonplaceholder.typicode.com/users/1");
+    define apiData = fetchData("https://jsonplaceholder.typicode.com/users/1");
     print("API Data: " + apiData);
 }
 
 fetchFromAPI();
 
 # Using Imported Multiply Function
-let num multiplied = multiply(4, 5);
+define num multiplied = multiply(4, 5);
 print("Multiplied Result: " + multiplied);

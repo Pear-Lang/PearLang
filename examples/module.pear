@@ -8,7 +8,7 @@ export function multiply(a, b) {
 
 export function fetchData(url) {
     print("Fetching data from: " + url);
-    let data = "Sample data fetched from " + url;
+    define data = "Sample data fetched from " + url;
     print("Data fetched successfully.");
     return data;
 }

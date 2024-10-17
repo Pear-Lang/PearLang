@@ -263,7 +263,7 @@ class Interpreter {
         const func = async (...args) => {
             const localEnv = new Environment(env);
             for (let i = 0; i < node.params.length; i++) {
-                localEnv.declare(node.params[i].name, args[i], 'let', node.params[i].line, node.params[i].column);
+                localEnv.declare(node.params[i].name, args[i], 'define', node.params[i].line, node.params[i].column);
             }
             let result;
             for (const stmt of node.body) {
@@ -403,9 +403,17 @@ class Interpreter {
         if (typeof func !== 'function') {
             this.error(`'${node.callee.name}' is not a function`, node);
         }
-        // Pass line and column for built-in functions that may require error reporting
-        return await func(...args, node.line, node.column);
-    }
+        
+        // Check if the function is a built-in function by examining its length
+        // (assuming built-in functions do not expect line and column)
+        if (func.length === args.length) {
+            // Built-in function: pass only the arguments
+            return await func(...args);
+        } else {
+            // User-defined function: pass line and column for error reporting
+            return await func(...args, node.line, node.column);
+        }
+    }  
 
     async visitMemberExpression(node, env) {
         const object = await this.visit(node.object, env);
@@ -449,7 +457,7 @@ class Interpreter {
         } catch (e) {
             if (node.handler) {
                 const localEnv = new Environment(env);
-                localEnv.declare(node.handler.param.name, e, 'let', node.handler.param.line, node.handler.param.column);
+                localEnv.declare(node.handler.param.name, e, 'define', node.handler.param.line, node.handler.param.column);
                 for (const stmt of node.handler.body) {
                     await this.visit(stmt, localEnv);
                 }
@@ -474,7 +482,7 @@ class Interpreter {
         const cls = class {
             constructor(...args) {
                 const localEnv = new Environment(env);
-                localEnv.declare('this', this, 'let', node.line, node.column);
+                localEnv.declare('this', this, 'define', node.line, node.column);
                 if (this.constructorMethod) {
                     this.constructorMethod(...args);
                 }
@@ -485,9 +493,9 @@ class Interpreter {
             if (method.id.name === 'constructor') {
                 cls.prototype.constructorMethod = (...args) => {
                     const methodEnv = new Environment(env);
-                    methodEnv.declare('this', this, 'let', method.line, method.column);
+                    methodEnv.declare('this', this, 'define', method.line, method.column);
                     for (let i = 0; i < method.params.length; i++) {
-                        methodEnv.declare(method.params[i].name, args[i], 'let', method.params[i].line, method.params[i].column);
+                        methodEnv.declare(method.params[i].name, args[i], 'define', method.params[i].line, method.params[i].column);
                     }
                     for (const stmt of method.body) {
                         this.visit(stmt, methodEnv);
@@ -496,9 +504,9 @@ class Interpreter {
             } else {
                 cls.prototype[method.id.name] = async (...args) => {
                     const methodEnv = new Environment(env);
-                    methodEnv.declare('this', this, 'let', method.line, method.column);
+                    methodEnv.declare('this', this, 'define', method.line, method.column);
                     for (let i = 0; i < method.params.length; i++) {
-                        methodEnv.declare(method.params[i].name, args[i], 'let', method.params[i].line, method.params[i].column);
+                        methodEnv.declare(method.params[i].name, args[i], 'define', method.params[i].line, method.params[i].column);
                     }
                     for (const stmt of method.body) {
                         await this.visit(stmt, methodEnv);
@@ -541,7 +549,7 @@ class Interpreter {
         await moduleInterpreter.visit(ast);
         for (const specifier of node.specifiers) {
             const value = moduleInterpreter.globalEnv.get(specifier.name);
-            env.declare(specifier.name, value, 'let', node.line, node.column);
+            env.declare(specifier.name, value, 'define', node.line, node.column);
         }
     }
 
